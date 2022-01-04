@@ -30,7 +30,8 @@ def make_vocab(tokenizer):
 
 def encoding(data, vocab):
     encoded_data = []
-    for sentence in data:
+    print("====================encoding====================")
+    for sentence in tqdm(data):
         encoded_sentence = []
         for word in sentence:
             try:
@@ -121,12 +122,14 @@ load data
 """
 dataset = np.array([['title', 'label','train']])
 with open('ynat-v1.1_train.json') as f: # 45678 samples
-    for line in json.load(f):
+    print("====================train load====================")
+    for line in tqdm(json.load(f)):
         data = np.array([[line['title'], line['label'],'1']])
         dataset = np.concatenate((dataset, data), axis=0)
 
 with open('ynat-v1.1_dev.json') as f: # 9107 samples
-    for line in json.load(f):
+    print("====================test load====================")
+    for line in tqdm(json.load(f)):
         data = np.array([[line['title'], line['label'],'0']])
         dataset = np.concatenate((dataset, data), axis=0)
 
@@ -193,6 +196,8 @@ total = 0
 with torch.no_grad():
     for data in data_loader:
         x, y = data
+        x = x.to(device)
+        y = y.to(device)
         outputs = model(x)
 
         predicts = torch.argmax(outputs, 1)
