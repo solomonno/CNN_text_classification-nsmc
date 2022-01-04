@@ -29,10 +29,10 @@
 (TO DO)
 
 ---
-# Result
+# Result(accuracy)
 dataset|CNN-rand|CNN-static|CNN-non-static|
 ---|---|---|---|
-ynat|-|-|-|
+ynat|72.86|-|-|
 NSMC|-|-|-|
 
 
